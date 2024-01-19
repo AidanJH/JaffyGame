@@ -20,7 +20,7 @@ public class EnemySpawner : MonoBehaviour
         if (player == null)
         {
             Debug.LogError("Player not found");
-            yield break; // Exit the coroutine if the player is not found
+            yield break;
         }
 
         for (int i = 0; i < numberOfEnemiesToSpawn; i++)
@@ -30,7 +30,7 @@ public class EnemySpawner : MonoBehaviour
 
             GameObject newEnemy = Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
 
-            yield return new WaitForSeconds(spawnInterval); // Wait for the specified interval before spawning the next enemy
+            yield return new WaitForSeconds(spawnInterval);
         }
     }
 }
