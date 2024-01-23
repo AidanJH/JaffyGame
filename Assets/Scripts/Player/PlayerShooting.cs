@@ -15,7 +15,7 @@ public class PlayerShooting : MonoBehaviour
             Vector2 rightStickInput = Gamepad.current.rightStick.ReadValue();
             if (rightStickInput.sqrMagnitude > 0)
             {
-                Debug.Log("Player Shooting");
+                //Debug.Log("Player Shooting");
                 ShootDirection(rightStickInput);
             }
         }
@@ -34,43 +34,21 @@ public class PlayerShooting : MonoBehaviour
         angle = (angle + 360) % 360;
         //Debug.Log("Stick Input is" + angle);
         RaycastHit2D hit = FindWeapon(angle);
-         // Check if the ray hit something
         if (hit.collider != null)
         {
-            // Check if the hit object is of the weapon layer
-            if (hit.collider.gameObject.tag == "Weapon")
+            if (hit.collider.gameObject.layer == LayerMask.NameToLayer("PlayerWeapons"))
             {
-                // The ray hit a weapon
                 Weapon weapon = hit.collider.gameObject.GetComponent<Weapon>();
                 if (weapon != null)
                 {
-                    // Do something with the weapon (e.g., return it)
-                    Debug.Log("Hit weapon: " + weapon.name);
-                    weapon.WeaponShoot(angle);
-                    // Your additional logic here
+                    //Vector2 weaponCenter = hit.collider.bounds.center;
+                    Vector2 weaponCenter = weapon.GetComponent<Collider2D>().bounds.center;
+                    float recalibratedAngle = RecalibrateFiringAngle(weaponCenter);
+                    //Debug.Log("Hit weapon: " + weapon.name);
+                    weapon.WeaponShoot(recalibratedAngle);
                 }
             }
         }
-        // if(angle >= 340 && angle <= 360 || angle >= 0 && angle <= 20)
-        // {
-        //     //Debug.Log("Stick Pushed Right");
-        // } else if(angle >= 25 && angle <= 65) {
-        //     //Debug.Log("Stick Pushed Right-Up Diagonal");
-        // } else if(angle >= 70 && angle <= 110){
-        //     //Debug.Log("Stick Pushed Up ");
-        // } else if(angle >= 115 && angle <= 155){
-        //     //Debug.Log("Stick Pushed Left-Up Diagonal");
-        // } else if (angle >= 160 && angle <= 200){
-        //     //Debug.Log("Stick Pushed Left");
-        // } else if (angle >= 205 && angle <= 245){
-        //     //Debug.Log("Stick Pushed Left-Down Diagonal");
-        // } else if (angle >= 250 && angle <= 290){
-        //     //Debug.Log("Stick Pushed Down");
-        // } else if (angle >= 295 && angle <= 235){
-        //     //Debug.Log("Stick Pushed Right-Down Diagonal");
-        // } else {
-        //     //Debug.Log("Stick Input not a direction" + angle);
-        // }
     }
 
     private RaycastHit2D FindWeapon(float angle)
@@ -81,8 +59,15 @@ public class PlayerShooting : MonoBehaviour
         Vector2 direction = new Vector2(Mathf.Cos(radians), Mathf.Sin(radians));
         //Getting the radius of the circle so that raycast will only extend to the borders of the object.
         float playerRadius = this.GetComponent<Collider2D>().bounds.size.x * 0.5f;
-        //Casting the ray from the center position of the player in the direction dictated. Also only interact with Weapons layer.
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, playerRadius, LayerMask.GetMask("Weapons"));
+        //Casting the ray from the center position of the player in the direction dictated.
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, playerRadius, LayerMask.GetMask("PlayerWeapons"));
         return hit;
+    }
+
+        private float RecalibrateFiringAngle(Vector2 weaponCentrePosition)
+    {       
+        Vector2 directionToPlayer = weaponCentrePosition - (Vector2)transform.position;
+        float recalibratedAngle = Mathf.Atan2(directionToPlayer.y, directionToPlayer.x) * Mathf.Rad2Deg;
+        return recalibratedAngle;
     }
 }
