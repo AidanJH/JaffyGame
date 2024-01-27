@@ -2,17 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpeedBoostModule : MonoBehaviour
+public class SpeedBoostModule : IModule
 {
-    private float _speedBoostPercentage;
-    private float _speedBoostFlat;
-    public SpeedBoostModule(float speedBoostPercentage, float speedBoostFlat){
-        _speedBoostFlat = speedBoostFlat;
-        _speedBoostPercentage = speedBoostPercentage;
+    private int _speedBoost;
+    public SpeedBoostModule(int speedBoost){
+        _speedBoost = speedBoost;
     }
 
 
-    public void ApplyEffect(GameObject player){
-        
+    public void ApplyEffect(PlayerController player){
+        //Can add in extra effects here as a template
+        player.ModifySpeed(_speedBoost);
     }
 }

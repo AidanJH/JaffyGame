@@ -2,17 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RotationBoostModuleSO : MonoBehaviour
+//Todo, tie these to a menu item if need be
+[CreateAssetMenu(fileName = "New RotationBoostModule", menuName = "Modules/Speed")]
+public class RotationBoostModuleSO : ScriptableObject
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+   public int rotation;
 }

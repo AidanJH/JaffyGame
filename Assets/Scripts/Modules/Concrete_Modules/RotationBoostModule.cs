@@ -2,17 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RotationBoostModule : MonoBehaviour
+public class RotationBoostModule : IModule
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+    private int _rotationBoost;
+    public RotationBoostModule(int rotationBoost){
+        _rotationBoost = rotationBoost;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    public void ApplyEffect(PlayerController player){
+        //Can add in extra effects here as a template
+        player.ModifyRotation(_rotationBoost);
     }
 }

@@ -5,8 +5,8 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 { 
-	public float acceleration = 100f;
-	public float rotationSpeed = 10f;
+	private float _acceleration = 100f;
+	private float _rotation = 10f;
 	public float maxSpeed = 10f;
 	public float deceleration = 5f;  // New field for deceleration
 	private Vector2 currentVelocity;
@@ -35,7 +35,7 @@ public class PlayerController : MonoBehaviour
 	private void UpdateTargetRotation()
 	{
 		float rotationAmount = Gamepad.current.rightTrigger.ReadValue() - Gamepad.current.leftTrigger.ReadValue();
-		transform.Rotate(Vector3.back, rotationAmount * rotationSpeed * Time.deltaTime);
+		transform.Rotate(Vector3.back, rotationAmount * _rotation * Time.deltaTime);
  
 	}
 
@@ -43,7 +43,7 @@ public class PlayerController : MonoBehaviour
 	{
 		if (direction.sqrMagnitude > 0)
 		{
-			Vector2 accelerationVector = direction * acceleration;
+			Vector2 accelerationVector = direction * _acceleration;
 			currentVelocity += accelerationVector * Time.deltaTime;
 		}
 		else
@@ -65,7 +65,7 @@ public class PlayerController : MonoBehaviour
 	{
 		if (isRotating)
 		{
-			transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+			transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, _rotation * Time.deltaTime);
 		}
 	}
 
@@ -81,5 +81,20 @@ public class PlayerController : MonoBehaviour
 				Destroy(gameObject);  
 			}
 		}
+	}
+
+	//The following 'ModifyX' methods can be used with a negative or positive integer
+	//TODO: Add percentage increases later if needed
+	//TODO: Change return type to bool and add guards if needed, so we can know whether adding a modifier is permitted
+	public void ModifySpeed(int speed){
+		maxSpeed += speed;
+	}
+
+	public void ModifyAcceleration(int acceleration){
+		_acceleration += acceleration;
+	}
+
+	public void ModifyRotation(int rotation){
+		_rotation += rotation;
 	}
 }

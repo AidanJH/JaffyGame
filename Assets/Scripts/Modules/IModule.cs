@@ -4,5 +4,5 @@ using UnityEngine;
 
 public interface IModule
 {
-    void ApplyEffect(GameObject player);
+    void ApplyEffect(PlayerController player);
 }

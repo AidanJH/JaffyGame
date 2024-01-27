@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "New SpeedBoostModule", menuName = "Modules/Speed")]
-public class SpeedBoostModuleSO : MonoBehaviour
+public class SpeedBoostModuleSO : ScriptableObject
 {
-    public float speedIncreasePercentage;
-    public float speedIncreaseFlat;
+    public int speedIncreaseFlat;
 }
