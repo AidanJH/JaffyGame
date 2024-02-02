@@ -71,10 +71,15 @@ public class PlayerController : MonoBehaviour
 
 	void OnCollisionEnter2D(Collision2D collision) 
 	{
-		health -= 25f;
-		if (health <= 0) 
+		if(collision.gameObject.layer == LayerMask.NameToLayer("PlayerWeapons"))
 		{
-			Destroy(gameObject);
+			Debug.Log("You shot yourself dummy");
+		} else {
+			health -= 25f;
+			if (health <= 0) 
+			{
+				Destroy(gameObject);  
+			}
 		}
 	}
 }

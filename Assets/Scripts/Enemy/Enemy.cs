@@ -21,4 +21,19 @@ public abstract class Enemy : MonoBehaviour
 	{
 		
 	}
+	
+	void OnCollisionEnter2D(Collision2D collision)
+	{
+		if(collision.gameObject.layer == LayerMask.NameToLayer("PlayerWeapons"))
+		{
+			Debug.Log("Player shot enemy: " + gameObject.name);
+			health -= 25f;
+			if (health <= 0) 
+			{
+				Destroy(gameObject);  
+			}
+		} else {
+			Debug.Log("The enemy has collided with" + collision.gameObject.name);
+		}	
+	}
 }
