@@ -11,37 +11,36 @@ public class PlayerController : MonoBehaviour
 	public float deceleration = 5f;  // New field for deceleration
 	private Vector2 currentVelocity;
 	private Rigidbody2D rb;
+	private PlayerInputActions playerInputActions;
 
 	private Quaternion targetRotation;
 	private bool isRotating;
 
 	public float health = 100f;
 
-	// Start is called before the first frame update
-	void Start()
+	private void Awake() {
+        rb = GetComponent<Rigidbody2D>();
+		playerInputActions = new PlayerInputActions();
+		playerInputActions.Player.Enable();
+    }
+
+	 void FixedUpdate()
 	{
-		rb = GetComponent<Rigidbody2D>();
-
-	}
-
-	 void LateUpdate()
-	{
-		Vector2 direction = Gamepad.current.leftStick.ReadValue();
-
-		UpdateVelocity(direction);
+		UpdateVelocity();
 		UpdateTargetRotation();
 	}
 
 	private void UpdateTargetRotation()
 	{
-		float rotationAmount = Gamepad.current.rightTrigger.ReadValue() - Gamepad.current.leftTrigger.ReadValue();
-		transform.Rotate(Vector3.back, rotationAmount * rotationSpeed * Time.deltaTime);
- 
+        float rotationAmount = playerInputActions.Player.Rotate.ReadValue<float>();
+        transform.Rotate(Vector3.back, rotationAmount * rotationSpeed * Time.deltaTime); 
 	}
 
-	private void UpdateVelocity(Vector2 direction)
+	private void UpdateVelocity()
 	{
-		if (direction.sqrMagnitude > 0)
+        Vector2 direction = playerInputActions.Player.Move.ReadValue<Vector2>();
+
+        if (direction.sqrMagnitude > 0)
 		{
 			Vector2 accelerationVector = direction * acceleration;
 			currentVelocity += accelerationVector * Time.deltaTime;
