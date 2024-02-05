@@ -19,12 +19,12 @@ public class PlayerController : MonoBehaviour
 	public float health = 100f;
 
 	private void Awake() {
-        rb = GetComponent<Rigidbody2D>();
+		rb = GetComponent<Rigidbody2D>();
 		playerInputActions = new PlayerInputActions();
 		playerInputActions.Player.Enable();
-    }
+	}
 
-	 void FixedUpdate()
+	void FixedUpdate()
 	{
 		UpdateVelocity();
 		UpdateTargetRotation();
