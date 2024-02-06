@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.Services.Analytics;
 using UnityEngine;
 
 public abstract class Enemy : MonoBehaviour
@@ -51,7 +52,7 @@ public abstract class Enemy : MonoBehaviour
 		}	
 	}
 	
-	private void RotateTowardsPlayer()
+	protected virtual void RotateTowardsPlayer()
 		{
 			// Direction vector from the enemy to the player
 			Vector2 direction = (player.position - transform.position).normalized;
