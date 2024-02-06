@@ -60,7 +60,7 @@ public abstract class Enemy : MonoBehaviour
 			transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(new Vector3(0f, 0f, angle)), rotationSpeed * Time.deltaTime);
 		}
 
-	private void MoveTowardsPlayer()
+	protected virtual void MoveTowardsPlayer()
 	{
 		// Moves the enemy towards the player
 		transform.position = Vector2.MoveTowards(transform.position, player.position, moveSpeed * Time.deltaTime);

@@ -5,6 +5,7 @@ using UnityEngine;
 public class ShootingEnemy : Enemy
 {
 	public Weapon weapon;
+	public float minDistanceFromPlayer;
 
 	private void Update() 
 	{
@@ -24,7 +25,15 @@ public class ShootingEnemy : Enemy
 	}
 	
 	// Function for stopping at a certain distance away from the player
-
+	protected override void MoveTowardsPlayer() 
+	{		
+		float distance = Vector2.Distance(transform.position, player.position);
+		
+		if (distance > minDistanceFromPlayer) 
+		{
+			transform.position = Vector2.MoveTowards(transform.position, player.position, moveSpeed * Time.deltaTime);
+		}
+	}
 }
 
 

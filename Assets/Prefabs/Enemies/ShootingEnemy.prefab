@@ -180,8 +180,8 @@ MonoBehaviour:
   player: {fileID: 0}
   health: 100
   collisionDamage: 25
-  correctionDuration: 1
   weapon: {fileID: 3088030163174747753}
+  minDistanceFromPlayer: 10
 --- !u!1 &8204984635256081352
 GameObject:
   m_ObjectHideFlags: 0
