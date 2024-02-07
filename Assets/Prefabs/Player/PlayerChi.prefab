@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4918668808589249319}
   - component: {fileID: 3687226363887156732}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: RotationMarker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -97,7 +97,7 @@ GameObject:
   - component: {fileID: 8136774875813925733}
   - component: {fileID: 827805108270980307}
   - component: {fileID: 4279707385144271298}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: PlayerChi
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -188,6 +188,7 @@ MonoBehaviour:
   rotationSpeed: 250
   maxSpeed: 10
   deceleration: 5
+  health: 100
 --- !u!50 &827805108270980307
 Rigidbody2D:
   serializedVersion: 4
