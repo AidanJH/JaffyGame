@@ -11,6 +11,7 @@ public class SprinklerEnemy : Enemy
 	{
 		base.FixedUpdate();
 		RotateIdle();
+		ShootInSprayingPattern();
 	}
 
 	protected override void RotateTowardsPlayer(){}
@@ -23,6 +24,15 @@ public class SprinklerEnemy : Enemy
 		if (distance > minDistanceFromPlayer) 
 		{
 			transform.position = Vector2.MoveTowards(transform.position, player.position, moveSpeed * Time.deltaTime);
+		}
+	}
+	
+	private void ShootInSprayingPattern() 
+	{
+		foreach (Weapon weapon in weapons) 
+		{
+			float angle = weapon.transform.rotation.eulerAngles.z;
+			weapon.WeaponShoot(angle);
 		}
 	}
 	

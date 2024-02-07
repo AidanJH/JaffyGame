@@ -7,7 +7,7 @@ public class ShootingEnemy : Enemy
 	public Weapon weapon;
 	public float minDistanceFromPlayer = 10f;
 
-	private void Update() 
+	private void FixedUpdate() 
 	{
 		ShootAtPlayer();
 	}
