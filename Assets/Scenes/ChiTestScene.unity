@@ -379,6 +379,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerChi
       objectReference: {fileID: 0}
+    - target: {fileID: 4508257474723920025, guid: 650996d871b53e5458714b714429d98e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7205487650750286608, guid: 650996d871b53e5458714b714429d98e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -422,7 +426,13 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4508257474723920025, guid: 650996d871b53e5458714b714429d98e, type: 3}
+      insertIndex: 2
+      addedObject: {fileID: 2138752340}
+    - targetCorrespondingSourceObject: {fileID: 4508257474723920025, guid: 650996d871b53e5458714b714429d98e, type: 3}
+      insertIndex: 4
+      addedObject: {fileID: 2138752341}
   m_SourcePrefab: {fileID: 100100000, guid: 650996d871b53e5458714b714429d98e, type: 3}
 --- !u!4 &2138752338 stripped
 Transform:
