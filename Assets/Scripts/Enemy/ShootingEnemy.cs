@@ -7,8 +7,9 @@ public class ShootingEnemy : Enemy
 	public Weapon weapon;
 	public float minDistanceFromPlayer = 10f;
 
-	private void FixedUpdate() 
+	protected override void FixedUpdate() 
 	{
+		base.FixedUpdate();
 		ShootAtPlayer();
 	}
 

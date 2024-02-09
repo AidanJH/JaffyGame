@@ -25,7 +25,7 @@ public class Weapon : MonoBehaviour
         }
     }
 
-    IEnumerator ReloadWeapon()
+    protected virtual IEnumerator ReloadWeapon()
     {
         yield return new WaitForSeconds(reloadTime);
         reloaded = true;
