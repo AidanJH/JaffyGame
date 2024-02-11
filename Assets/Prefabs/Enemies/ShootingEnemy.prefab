@@ -281,9 +281,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddfc8f41b791a634e9894c95f330514c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectilePrefab: {fileID: 6501154560612685780, guid: 277311149e77c9c4dad4fb3f64c5bf1a, type: 3}
+  projectilePrefab: {fileID: 668132819298061139, guid: 4d63eabc99e720145ba875bdebfc34fe, type: 3}
   reloaded: 1
-  reloadTime: 0.5
+  reloadTime: 0.25
 --- !u!61 &3106155676312668371
 BoxCollider2D:
   m_ObjectHideFlags: 0
