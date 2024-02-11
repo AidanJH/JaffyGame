@@ -5,16 +5,15 @@ using UnityEngine;
 [System.Serializable]
 public class BurstWeapon : Weapon
 {
-	[SerializeField] private int magazineSize;
+	[SerializeField] protected int magazineSize;
 	[SerializeField] private float delayBetweenShots;
-	[SerializeField] private bool isFiring = false; // Stops the FireProjectile coroutine from being called twice (shoot one bullet a time)
+	[SerializeField] protected bool isFiring = false; // Stops the FireProjectile coroutine from being called twice (shoot one bullet a time)
+	protected int bulletsLeftInMagazine;
 	
-	public int bulletsLeftInMagazine;
-	
-	private void Start() 
+	protected virtual void Start() 
 	{
 		bulletsLeftInMagazine = magazineSize;
-		projectilePrefab.projectileForce = 12;
+		projectilePrefab.projectileForce = 12f;
 	}
 
 	public override void WeaponShoot(float firingAngle) 
@@ -36,7 +35,7 @@ public class BurstWeapon : Weapon
 		}
 	}
 	
-	private IEnumerator FireProjectile(float firingAngle) 
+	protected virtual IEnumerator FireProjectile(float firingAngle) 
 	{
 		isFiring = true;
 		Projectile firedProjectile = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
@@ -48,7 +47,7 @@ public class BurstWeapon : Weapon
 		isFiring = false;
 	}
 	
-	private IEnumerator DelayBetweenShots() 
+	protected IEnumerator DelayBetweenShots() 
 	{
 		Debug.Log("delaying");
 		yield return new WaitForSeconds(delayBetweenShots);
