@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 7173790870607035588}
   - component: {fileID: 5029866825254038861}
+  - component: {fileID: 1481725863521406142}
   - component: {fileID: 8804868196235436455}
   - component: {fileID: 4806385028797139753}
-  - component: {fileID: 1481725863521406142}
   m_Layer: 8
   m_Name: ShootingEnemy
   m_TagString: Untagged
@@ -88,6 +88,25 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1481725863521406142
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1333070975439346493}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5b947b7cf6ef5d4eb28ff82366f56cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 3.5
+  rotationSpeed: 6
+  player: {fileID: 0}
+  health: 100
+  collisionDamage: 25
+  weapon: {fileID: 3088030163174747753}
+  minDistanceFromPlayer: 10
 --- !u!60 &8804868196235436455
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -163,25 +182,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &1481725863521406142
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1333070975439346493}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5b947b7cf6ef5d4eb28ff82366f56cb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 3.5
-  rotationSpeed: 3
-  player: {fileID: 0}
-  health: 100
-  collisionDamage: 25
-  weapon: {fileID: 3088030163174747753}
-  minDistanceFromPlayer: 10
 --- !u!1 &8204984635256081352
 GameObject:
   m_ObjectHideFlags: 0
