@@ -8,8 +8,7 @@ public class BurstWeapon : Weapon
 	[SerializeField] private int magazineSize;
 	[SerializeField] private float delayBetweenShots;
 	[SerializeField] private bool isFiring = false; // Stops the FireProjectile coroutine from being called twice (shoot one bullet a time)
-	
-	public int bulletsLeftInMagazine;
+	private int bulletsLeftInMagazine;
 	
 	private void Start() 
 	{

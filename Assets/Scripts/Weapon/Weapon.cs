@@ -11,7 +11,7 @@ public class Weapon : MonoBehaviour
 
     public virtual void WeaponShoot(float firingAngle)
     {
-        if(reloaded)
+        if (reloaded)
         {
             Projectile firedProjectile = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
             firedProjectile.gameObject.layer = gameObject.layer;
