@@ -10,7 +10,7 @@ public class ShotgunWeapon : Weapon
 	
 	private void Start()
 	{
-		projectilePrefab.projectileForce = 6;	
+		projectilePrefab.projectileForce = 6f;	
 	}
 
 	public override void WeaponShoot(float firingAngle)
