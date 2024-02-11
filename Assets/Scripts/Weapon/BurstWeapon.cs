@@ -5,34 +5,52 @@ using UnityEngine;
 [System.Serializable]
 public class BurstWeapon : Weapon
 {
-	[SerializeField] private int bulletsPerBurst;
+	[SerializeField] private int magazineSize;
 	[SerializeField] private float delayBetweenShots;
-
-	public override void WeaponShoot(float firingAngle)
+	[SerializeField] private bool isFiring = false; // Stops the FireProjectile coroutine from being called twice (shoot one bullet a time)
+	
+	public int bulletsLeftInMagazine;
+	
+	private void Start() 
 	{
-		if (reloaded)
+		bulletsLeftInMagazine = magazineSize;
+		projectilePrefab.projectileForce = 12;
+	}
+
+	public override void WeaponShoot(float firingAngle) 
+	{
+		if (reloaded && !isFiring) 
 		{
-			for (int i = 0; i < bulletsPerBurst; i++) 
-			{
-				Projectile firedProjectile = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
-				firedProjectile.gameObject.layer = gameObject.layer;
-				firedProjectile.Launch(firingAngle);
-				
-				yield WaitForSeconds(delayBetweenShots);
-				// if (i < bulletsPerBurst - 1) 
-				// {
-				// 	StartCoroutine(DelayBetweenShots(i));
-				// }
-			}
+			StartCoroutine(FireProjectile(firingAngle));
+		}
+		else if (!reloaded)
+		{
+			Debug.Log("Weapon not reloaded yet");
+		}
+		
+		if (bulletsLeftInMagazine <= 0) 
+		{
 			reloaded = false;
 			StartCoroutine(ReloadWeapon());
-		} else {
-			Debug.Log("Weapon not reloaded yet");
+			bulletsLeftInMagazine = magazineSize;
 		}
 	}
 	
-	// private IEnumerator DelayBetweenShots(int index) 
-	// {
-	// 	yield return new WaitForSeconds(delayBetweenShots * (index + 1));
-	// }
+	private IEnumerator FireProjectile(float firingAngle) 
+	{
+		isFiring = true;
+		Projectile firedProjectile = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
+		firedProjectile.gameObject.layer = gameObject.layer;
+		firedProjectile.Launch(firingAngle);
+		bulletsLeftInMagazine--;
+		
+		yield return StartCoroutine(DelayBetweenShots());
+		isFiring = false;
+	}
+	
+	private IEnumerator DelayBetweenShots() 
+	{
+		Debug.Log("delaying");
+		yield return new WaitForSeconds(delayBetweenShots);
+	}
 }

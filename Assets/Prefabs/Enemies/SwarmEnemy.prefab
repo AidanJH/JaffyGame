@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 5094967510300473699}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.62, y: 10.14, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -179,8 +179,3 @@ MonoBehaviour:
   player: {fileID: 0}
   health: 100
   collisionDamage: 25
-  zigzagDistance: 1
-  zigzagSpeed: 2
-  spiralRadius: 5
-  spiralSpeed: 20
-  spiralDistanceIncreaseRate: 5
