@@ -19,7 +19,7 @@ public abstract class Enemy : MonoBehaviour
 	{
 		if (player != null)
 		{
-			RotateTowardsPlayer();
+			Rotate();
 			MoveTowardsPlayer();
 		}
 	}
@@ -37,7 +37,7 @@ public abstract class Enemy : MonoBehaviour
 		}
 	}
 	
-	private void OnCollisionEnter2D(Collision2D collision)
+	protected virtual void OnCollisionEnter2D(Collision2D collision)
 	{
 		if(collision.gameObject.layer == LayerMask.NameToLayer("PlayerWeapons"))
 		{
@@ -52,14 +52,14 @@ public abstract class Enemy : MonoBehaviour
 		}	
 	}
 	
-	protected virtual void RotateTowardsPlayer()
-		{
-			// Direction vector from the enemy to the player
-			Vector2 direction = (player.position - transform.position).normalized;
-			// The angle from the enemy to the player
-			float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90f;
-			transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(new Vector3(0f, 0f, angle)), rotationSpeed * Time.deltaTime);
-		}
+	protected virtual void Rotate()
+	{
+		// Direction vector from the enemy to the player
+		Vector2 direction = (player.position - transform.position).normalized;
+		// The angle from the enemy to the player
+		float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90f;
+		transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(new Vector3(0f, 0f, angle)), rotationSpeed * Time.deltaTime);
+	}
 
 	protected virtual void MoveTowardsPlayer()
 	{

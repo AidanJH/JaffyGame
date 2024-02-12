@@ -10,11 +10,12 @@ public class SprinklerEnemy : Enemy
 	protected override void FixedUpdate()
 	{
 		base.FixedUpdate();
-		RotateIdle();
 		ShootInSprayingPattern();
 	}
 
-	protected override void RotateTowardsPlayer(){}
+	protected override void Rotate() {		
+		transform.Rotate(new Vector3(0, 0, rotationSpeed) * Time.deltaTime);
+	}
 	
 	protected override void MoveTowardsPlayer() 
 	{		
@@ -34,10 +35,5 @@ public class SprinklerEnemy : Enemy
 			float angle = weapon.transform.rotation.eulerAngles.z;
 			weapon.WeaponShoot(angle);
 		}
-	}
-	
-	private void RotateIdle() 
-	{
-		transform.Rotate(new Vector3(0, 0, rotationSpeed) * Time.deltaTime);
 	}
 }
