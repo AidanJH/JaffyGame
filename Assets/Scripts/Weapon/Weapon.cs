@@ -1,8 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
-using UnityEngine.UI;
 
 [System.Serializable]
 public class Weapon : MonoBehaviour
@@ -15,12 +13,11 @@ public class Weapon : MonoBehaviour
 
     public virtual void WeaponShoot(float firingAngle)
     {
-        if(reloaded)
+        if (reloaded)
         {
             Projectile firedProjectile = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
             firedProjectile.gameObject.layer = gameObject.layer;
             firedProjectile.Launch(firingAngle);
-            //Debug.Log("Fired at angle " + firingAngle);
             reloaded = false;
             StartCoroutine(ReloadWeapon());
         } else {
@@ -28,7 +25,7 @@ public class Weapon : MonoBehaviour
         }
     }
 
-    IEnumerator ReloadWeapon()
+    protected virtual IEnumerator ReloadWeapon()
     {
         GameObject reloadInstance = Instantiate(reloadPrefab, transform.position, transform.rotation);
         Animator animator = reloadInstance.GetComponent<Animator>();
