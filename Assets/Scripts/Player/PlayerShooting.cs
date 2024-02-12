@@ -5,8 +5,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerShooting : MonoBehaviour
 {
-    public List<Weapon> playerWeapons;
-
+    public List<WeaponAnchor> playerWeaponAnchors;
     // Update is called once per frame
     void Update()
     {
@@ -61,10 +60,22 @@ public class PlayerShooting : MonoBehaviour
         float playerRadius = this.GetComponent<Collider2D>().bounds.size.x * 0.5f;
         //Casting the ray from the center position of the player in the direction dictated.
         RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, playerRadius, LayerMask.GetMask("PlayerWeapons"));
+        
+        //Check if weapon attached to player anchor points, this is a second check might replace with the layer check above.
+        if(hit.collider != null)
+        {
+            foreach(WeaponAnchor weaponAnchor in playerWeaponAnchors)
+            {
+                if(hit.collider.gameObject.transform.IsChildOf(weaponAnchor.transform))
+                {
+                    return hit;
+                }
+            }
+        }
         return hit;
     }
 
-        private float RecalibrateFiringAngle(Vector2 weaponCentrePosition)
+    private float RecalibrateFiringAngle(Vector2 weaponCentrePosition)
     {       
         Vector2 directionToPlayer = weaponCentrePosition - (Vector2)transform.position;
         float recalibratedAngle = Mathf.Atan2(directionToPlayer.y, directionToPlayer.x) * Mathf.Rad2Deg;
