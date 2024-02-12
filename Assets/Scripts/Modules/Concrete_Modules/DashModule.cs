@@ -2,17 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DashModule : MonoBehaviour
+public class DashModule : IModule
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+    private float _boost;
+    private float _duration;
+    public DashModule(float boost, float duration){
+        _boost = boost;
+        _duration = duration;
+
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    public void ApplyEffect(PlayerController player){
+        //Can add in extra effects here as a template
+        player.SetDash(_boost, _duration);
     }
 }

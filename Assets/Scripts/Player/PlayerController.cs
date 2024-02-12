@@ -14,6 +14,10 @@ public class PlayerController : MonoBehaviour
 
 	private Quaternion targetRotation;
 	private bool isRotating;
+	private bool _dashActivated;
+	private float _dashSpeed;
+	private float _dashDuration;
+	private bool _isDashing;
 
 	public float health = 100f;
 
@@ -21,7 +25,9 @@ public class PlayerController : MonoBehaviour
 	void Start()
 	{
 		rb = GetComponent<Rigidbody2D>();
-
+		_isDashing = false;
+		//TODO: Ideally this would be set based on saved stats, e.g if you resumed a game or chose the dashing perk before starting the game
+		_dashActivated = false;
 	}
 
 	 void LateUpdate()
@@ -30,6 +36,12 @@ public class PlayerController : MonoBehaviour
 
 		UpdateVelocity(direction);
 		UpdateTargetRotation();
+
+		//TODO: Merge in Keyboard controls for this
+		if (Gamepad.current.xButton.wasPressedThisFrame && _dashActivated && !_isDashing)
+        {
+			StartDash();
+        }
 	}
 
 	private void UpdateTargetRotation()
@@ -83,6 +95,13 @@ public class PlayerController : MonoBehaviour
 		}
 	}
 
+	public void SetDash(float dashSpeed, float dashDuration){
+		//Toggle right now
+		_dashActivated = !_dashActivated;
+		_dashDuration = dashDuration;
+		_dashSpeed = dashSpeed;
+	}
+
 	//The following 'ModifyX' methods can be used with a negative or positive integer
 	//TODO: Add percentage increases later if needed
 	//TODO: Change return type to bool and add guards if needed, so we can know whether adding a modifier is permitted
@@ -97,4 +116,34 @@ public class PlayerController : MonoBehaviour
 	public void ModifyRotation(int rotation){
 		_rotation += rotation;
 	}
+
+	public void StartDash()
+    {
+        StartCoroutine(DashCoroutine(_dashSpeed, _dashDuration));
+    }
+
+    private IEnumerator DashCoroutine(float dashSpeed, float dashDuration)
+    {
+        _isDashing = true;
+        float timeStartedDashing = Time.time;
+		float originalMaxSpeed = maxSpeed;
+		float originalAcceleration = _acceleration;
+
+        // Increase the speed for the dash
+        maxSpeed += dashSpeed;
+		_acceleration += 100000000f;
+
+        // Wait for the dash duration
+        while (Time.time < timeStartedDashing + dashDuration)
+        {
+            yield return null;
+        }
+
+        // Reset the speed after dashing
+        maxSpeed = originalMaxSpeed;
+		_acceleration = originalAcceleration;
+        _isDashing = false;
+    }
+
+
 }
