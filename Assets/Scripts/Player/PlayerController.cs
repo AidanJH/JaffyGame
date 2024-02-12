@@ -21,6 +21,8 @@ public class PlayerController : MonoBehaviour
 
 	public float health = 100f;
 
+	public List<GameObject> moduleAnchorPoints = new List<GameObject>();
+
 	// Start is called before the first frame update
 	void Start()
 	{
@@ -96,6 +98,7 @@ public class PlayerController : MonoBehaviour
 	}
 
 	public void SetDash(float dashSpeed, float dashDuration){
+		Debug.Log("Module effect is being applied");
 		//Toggle right now
 		_dashActivated = !_dashActivated;
 		_dashDuration = dashDuration;
