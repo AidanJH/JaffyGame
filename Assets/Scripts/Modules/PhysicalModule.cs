@@ -7,7 +7,7 @@ public class PhysicalModule : MonoBehaviour
 {
     [SerializeField]
     private int health;
-    private bool attachedToPlayer;
+    private bool attached;
     public PlayerController playerController; // Assign this in the Inspector
     public IModule module;
 
@@ -25,7 +25,7 @@ public class PhysicalModule : MonoBehaviour
 
     void TakeDamage()
     {
-        if(attachedToPlayer){
+        if(attached){
             health--;
 
             if(health <= 0){
