@@ -71,7 +71,7 @@ public class PhysicalModule : MonoBehaviour
         transform.localRotation = Quaternion.identity;
 
         module.ApplyEffect(playerController);
-        attachedToPlayer = true;
+        attached = true;
 
     }
 

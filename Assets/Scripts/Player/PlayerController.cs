@@ -54,7 +54,7 @@ public class PlayerController : MonoBehaviour
 	private void UpdateTargetRotation()
 	{
         float rotationAmount = playerInputActions.Player.Rotate.ReadValue<float>();
-        transform.Rotate(Vector3.back, rotationAmount * rotationSpeed * Time.deltaTime); 
+        transform.Rotate(Vector3.back, rotationAmount * _rotation * Time.deltaTime); 
 	}
 
 	private void UpdateVelocity()
