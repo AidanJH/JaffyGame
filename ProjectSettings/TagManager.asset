@@ -22,6 +22,8 @@ TagManager:
   - EnemyWeapons
   - Modules
   - ModuleAnchorPoint
+  - EnemyProjectiles
+  - 
   - 
   - 
   - 
@@ -44,4 +46,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: ExtremeForeground
+    uniqueID: 1852223515
     locked: 0

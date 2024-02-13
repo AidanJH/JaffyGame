@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
 	public float deceleration = 5f;  // New field for deceleration
 	private Vector2 currentVelocity;
 	private Rigidbody2D rb;
+	private PlayerInputActions playerInputActions;
 
 	private Quaternion targetRotation;
 	private bool isRotating;
@@ -31,12 +32,16 @@ public class PlayerController : MonoBehaviour
 		//TODO: Ideally this would be set based on saved stats, e.g if you resumed a game or chose the dashing perk before starting the game
 		_dashActivated = false;
 	}
+	
+	private void Awake() {
+		rb = GetComponent<Rigidbody2D>();
+		playerInputActions = new PlayerInputActions();
+		playerInputActions.Player.Enable();
+	}
 
-	 void LateUpdate()
+	void FixedUpdate()
 	{
-		Vector2 direction = Gamepad.current.leftStick.ReadValue();
-
-		UpdateVelocity(direction);
+		UpdateVelocity();
 		UpdateTargetRotation();
 
 		//TODO: Merge in Keyboard controls for this
@@ -48,14 +53,15 @@ public class PlayerController : MonoBehaviour
 
 	private void UpdateTargetRotation()
 	{
-		float rotationAmount = Gamepad.current.rightTrigger.ReadValue() - Gamepad.current.leftTrigger.ReadValue();
-		transform.Rotate(Vector3.back, rotationAmount * _rotation * Time.deltaTime);
- 
+        float rotationAmount = playerInputActions.Player.Rotate.ReadValue<float>();
+        transform.Rotate(Vector3.back, rotationAmount * rotationSpeed * Time.deltaTime); 
 	}
 
-	private void UpdateVelocity(Vector2 direction)
+	private void UpdateVelocity()
 	{
-		if (direction.sqrMagnitude > 0)
+        Vector2 direction = playerInputActions.Player.Move.ReadValue<Vector2>();
+
+        if (direction.sqrMagnitude > 0)
 		{
 			Vector2 accelerationVector = direction * _acceleration;
 			currentVelocity += accelerationVector * Time.deltaTime;

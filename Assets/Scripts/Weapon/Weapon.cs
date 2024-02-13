@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 [System.Serializable]
 public class Weapon : MonoBehaviour
@@ -9,15 +8,16 @@ public class Weapon : MonoBehaviour
     public Projectile projectilePrefab;
     public bool reloaded = true;
     public float reloadTime;
+    public AnimationClip reloadAnimationClip;
+    public GameObject reloadPrefab;
 
     public virtual void WeaponShoot(float firingAngle)
     {
-        if(reloaded)
+        if (reloaded)
         {
             Projectile firedProjectile = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
             firedProjectile.gameObject.layer = gameObject.layer;
             firedProjectile.Launch(firingAngle);
-            //Debug.Log("Fired at angle " + firingAngle);
             reloaded = false;
             StartCoroutine(ReloadWeapon());
         } else {
@@ -25,9 +25,24 @@ public class Weapon : MonoBehaviour
         }
     }
 
-    IEnumerator ReloadWeapon()
+    protected virtual IEnumerator ReloadWeapon()
     {
-        yield return new WaitForSeconds(reloadTime);
+        GameObject reloadInstance = Instantiate(reloadPrefab, transform.position, transform.rotation);
+        Animator animator = reloadInstance.GetComponent<Animator>();
+        reloadInstance.transform.SetParent(this.transform);
+
+        if (animator != null)
+        { 
+            animator.Play(reloadAnimationClip.name);
+            //Gets the length of the animation and adjust it to make it match the reload time.
+            float animationDuration = reloadAnimationClip.length;
+            float speedMultiplier = animationDuration / reloadTime;
+            animator.speed = speedMultiplier;
+
+            yield return new WaitForSeconds(reloadTime);
+        }
         reloaded = true;
+        Destroy(reloadInstance);
     }
+
 }

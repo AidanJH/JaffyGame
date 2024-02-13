@@ -9,9 +9,9 @@ public class BeamWeapon : Weapon
 
     public override void WeaponShoot(float firingAngle)
     {
-        if(reloaded)
+        if (reloaded)
         {
-            if(charged)
+            if (charged)
             {
                 //I offset the beam by moving the rotation point in the sprite editor, wouldn't work here for some reason.
                 Projectile firedProjectile = Instantiate(projectilePrefab, transform.position, transform.rotation);
@@ -28,12 +28,6 @@ public class BeamWeapon : Weapon
         } else {
             Debug.Log("Weapon not reloaded yet");
         }
-    }
-     
-    IEnumerator ReloadWeapon()
-    {
-        yield return new WaitForSeconds(reloadTime);
-        reloaded = true;
     }
 
     IEnumerator ChargeWeapon()

@@ -1,59 +1,48 @@
-using Unity.VisualScripting;
+using System.Collections;
+using Unity.Services.Analytics;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public abstract class Enemy : MonoBehaviour
 {
-	public float moveSpeed = 0.5f;
-	public float rotationSpeed = 3f;
-	private Transform player;
-	
-	public float health = 100f;
+	public float moveSpeed;
+	public float rotationSpeed;
+	public Transform player;
+	public float health;
+	public float collisionDamage;
 
-	void Start()
+	protected virtual void Start()
 	{
-		player = GameObject.FindGameObjectWithTag("Player").transform;
-
-		if (player == null)
-		{
-			Debug.LogError("Player not found!");
-		}
+		SetPlayerReferenceByTag("Player");
 	}
 
-	void Update()
+	protected virtual void FixedUpdate()
 	{
 		if (player != null)
 		{
 			RotateTowardsPlayer();
-
 			MoveTowardsPlayer();
 		}
 	}
-
-	void RotateTowardsPlayer()
+	
+	public void SetPlayerReferenceByTag(string playerTag)
 	{
-		Vector3 direction = (player.position - transform.position).normalized;
-
-		float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90f;
-
-		Quaternion targetRotation = Quaternion.Euler(new Vector3(0f, 0f, angle));
-		transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
-	}
-
-	void MoveTowardsPlayer()
-	{
-		Vector3 direction = (player.position - transform.position).normalized;
-
-		Vector3 newPosition = transform.position + direction * moveSpeed * Time.deltaTime;
-
-		transform.position = newPosition;
+		GameObject playerObject = GameObject.FindGameObjectWithTag(playerTag);
+		if (playerObject != null)
+		{
+			player = playerObject.transform;
+		}
+		else
+		{
+			Debug.LogError("Player not found with tag: " + playerTag);
+		}
 	}
 	
-	void OnCollisionEnter2D(Collision2D collision)
+	private void OnCollisionEnter2D(Collision2D collision)
 	{
 		if(collision.gameObject.layer == LayerMask.NameToLayer("PlayerWeapons"))
 		{
 			Debug.Log("Player shot enemy: " + gameObject.name);
-			health -= 25f;
+			health -= collisionDamage;
 			if (health <= 0) 
 			{
 				Destroy(gameObject);  
@@ -61,5 +50,20 @@ public class Enemy : MonoBehaviour
 		} else {
 			Debug.Log("The enemy has collided with" + collision.gameObject.name);
 		}	
+	}
+	
+	protected virtual void RotateTowardsPlayer()
+		{
+			// Direction vector from the enemy to the player
+			Vector2 direction = (player.position - transform.position).normalized;
+			// The angle from the enemy to the player
+			float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90f;
+			transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(new Vector3(0f, 0f, angle)), rotationSpeed * Time.deltaTime);
+		}
+
+	protected virtual void MoveTowardsPlayer()
+	{
+		// Moves the enemy towards the player
+		transform.position = Vector2.MoveTowards(transform.position, player.position, moveSpeed * Time.deltaTime);
 	}
 }
