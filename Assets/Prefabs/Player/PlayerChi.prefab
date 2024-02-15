@@ -184,11 +184,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32b7978e10082044daceddd60840372e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  acceleration: 100
-  rotationSpeed: 250
   maxSpeed: 10
   deceleration: 5
   health: 100
+  moduleAnchorPoints: []
 --- !u!50 &827805108270980307
 Rigidbody2D:
   serializedVersion: 4
