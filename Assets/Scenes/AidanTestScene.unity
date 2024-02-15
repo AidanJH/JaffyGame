@@ -289,6 +289,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38fa9958241daaf42b8cb4951aded2ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< HEAD
+=======
+  moveSpeed: 3
+  rotationSpeed: 5
+  player: {fileID: 0}
+  health: 100
+>>>>>>> dev
 --- !u!114 &67973284
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -301,6 +308,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38fa9958241daaf42b8cb4951aded2ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< HEAD
+=======
+  moveSpeed: 3
+  rotationSpeed: 5
+  player: {fileID: 0}
+  health: 100
+>>>>>>> dev
 --- !u!60 &67973285
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -364,6 +378,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+<<<<<<< HEAD
 --- !u!1 &735888662
 GameObject:
   m_ObjectHideFlags: 0
@@ -522,6 +537,8 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+=======
+>>>>>>> dev
 --- !u!1 &994304059
 GameObject:
   m_ObjectHideFlags: 0
@@ -590,6 +607,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+<<<<<<< HEAD
 --- !u!1 &1067577026
 GameObject:
   m_ObjectHideFlags: 0
@@ -748,6 +766,8 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+=======
+>>>>>>> dev
 --- !u!1 &1068089785
 GameObject:
   m_ObjectHideFlags: 0
@@ -862,8 +882,13 @@ GameObject:
   - component: {fileID: 1379337365}
   - component: {fileID: 1379337366}
   m_Layer: 12
+<<<<<<< HEAD
   m_Name: ModuleAnchorPointNorth
   m_TagString: AnchorPoint
+=======
+  m_Name: ModuleAnchorPoint
+  m_TagString: ModuleAnchorPoint
+>>>>>>> dev
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -877,7 +902,11 @@ Transform:
   m_GameObject: {fileID: 1379337361}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+<<<<<<< HEAD
   m_LocalPosition: {x: 0.001, y: 0.5190903, z: 0}
+=======
+  m_LocalPosition: {x: 0.0020863758, y: 0.5190903, z: 0}
+>>>>>>> dev
   m_LocalScale: {x: 0.08950221, y: 0.08950221, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1067,7 +1096,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 0
+<<<<<<< HEAD
   attached: 0
+=======
+>>>>>>> dev
   playerController: {fileID: 1510527282}
   rigidbody: {fileID: 0}
 --- !u!4 &1402901349
@@ -1654,6 +1686,7 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7205487650750286608, guid: 5c427dceeba35fd439b76d9e3ba1e1b3, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1379337362}
+<<<<<<< HEAD
     - targetCorrespondingSourceObject: {fileID: 7205487650750286608, guid: 5c427dceeba35fd439b76d9e3ba1e1b3, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1067577027}
@@ -1663,6 +1696,8 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7205487650750286608, guid: 5c427dceeba35fd439b76d9e3ba1e1b3, type: 3}
       insertIndex: -1
       addedObject: {fileID: 735888663}
+=======
+>>>>>>> dev
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 4508257474723920025, guid: 5c427dceeba35fd439b76d9e3ba1e1b3, type: 3}
       insertIndex: -1
