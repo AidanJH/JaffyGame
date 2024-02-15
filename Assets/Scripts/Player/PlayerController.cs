@@ -13,12 +13,15 @@ public class PlayerController : MonoBehaviour
 	private Rigidbody2D rb;
 	private PlayerInputActions playerInputActions;
 
+	public List<GameObject> anchorPoints = new List<GameObject>();
+
 	private Quaternion targetRotation;
 	private bool isRotating;
 
 	public float health = 100f;
 
 	private void Awake() {
+		GetAllAnchorPoints();
 		rb = GetComponent<Rigidbody2D>();
 		playerInputActions = new PlayerInputActions();
 		playerInputActions.Player.Enable();
@@ -80,5 +83,17 @@ public class PlayerController : MonoBehaviour
 				Destroy(gameObject);  
 			}
 		}
+	}
+
+	private void GetAllAnchorPoints(){
+		Transform[] transform = gameObject.GetComponentsInChildren<Transform>();
+		
+		 foreach (Transform child in transform)
+        {
+            if (child.tag == "AnchorPoint")
+            {
+                anchorPoints.Add(child.gameObject);
+            }
+        }
 	}
 }
