@@ -131,8 +131,9 @@ MonoBehaviour:
   player: {fileID: 0}
   health: 100
   collisionDamage: 50
-  enemyPrefab: {fileID: 0}
+  enemyPrefab: {fileID: 1081315735757675845}
   maxSplits: 2
+  minSizeToSplit: 0.5
 --- !u!58 &1529622660357586050
 CircleCollider2D:
   m_ObjectHideFlags: 0
