@@ -9,10 +9,12 @@ public abstract class Enemy : MonoBehaviour
 	public Transform player;
 	public float health;
 	public float collisionDamage;
+	private DamageFlash damageFlash;
 
 	protected virtual void Start()
 	{
 		SetPlayerReferenceByTag("Player");
+		damageFlash = GetComponent<DamageFlash>();
 	}
 
 	protected virtual void FixedUpdate()
@@ -39,10 +41,12 @@ public abstract class Enemy : MonoBehaviour
 	
 	protected virtual void OnCollisionEnter2D(Collision2D collision)
 	{
-		if(collision.gameObject.layer == LayerMask.NameToLayer("PlayerWeapons"))
+		// Enemy takes damage when hit by a player's projectile or the player itself
+		if((collision.gameObject.layer == LayerMask.NameToLayer("PlayerWeapons")) || collision.gameObject.layer == LayerMask.NameToLayer("Player"))
 		{
 			Debug.Log("Player shot enemy: " + gameObject.name);
 			health -= collisionDamage;
+			damageFlash.CallDamageFlash();
 			if (health <= 0) 
 			{
 				Destroy(gameObject);  
