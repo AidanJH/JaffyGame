@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class DamageFlash : MonoBehaviour
 {
+	[ColorUsage(true, true)]
 	[SerializeField] private Color flashColor = Color.white;
 	[SerializeField] private float flashTime = - 0.25f;
+	[SerializeField] private AnimationCurve flashSpeedCurve;
 	
 	private SpriteRenderer[] spriteRenderers;
 	private Material[] materials;
@@ -57,7 +59,7 @@ public class DamageFlash : MonoBehaviour
 			elapsedTime += Time.deltaTime;
 			
 			// Lerp the flash amount
-			currentFlashAmount = Mathf.Lerp(1f, 0f, (elapsedTime / flashTime));
+			currentFlashAmount = Mathf.Lerp(1f, flashSpeedCurve.Evaluate(elapsedTime), (elapsedTime / flashTime));
 			SetFlashAmount(currentFlashAmount);
 			
 			yield return null;

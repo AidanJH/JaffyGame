@@ -600,8 +600,41 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d998c002a8fd08445a1e3467397c6e91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flashColor: {r: 1, g: 1, b: 1, a: 1}
+  flashColor: {r: 2, g: 2, b: 2, a: 1}
   flashTime: 0.3
+  flashSpeedCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: -12.098471
+      outSlope: -12.098471
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.056475967
+      value: 0.3167272
+      inSlope: -7.425237
+      outSlope: -7.425237
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.030380499
+    - serializedVersion: 3
+      time: 0.3
+      value: 0
+      inSlope: -1.3005992
+      outSlope: -1.3005992
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1001 &1831764809
 PrefabInstance:
   m_ObjectHideFlags: 0
