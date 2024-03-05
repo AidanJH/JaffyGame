@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1481725863521406142}
   - component: {fileID: 8804868196235436455}
   - component: {fileID: 4806385028797139753}
+  - component: {fileID: 9063799927524854958}
   m_Layer: 8
   m_Name: ShootingEnemy
   m_TagString: Untagged
@@ -56,7 +57,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 3d5ed676fb4d83d438a861a7b59f7ef7, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -77,8 +78,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 75f5f34dc1b5347e0b8351032682f224, type: 3}
-  m_Color: {r: 0, g: 0.7868185, b: 1, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 04545c56910675644a31b555ca050f7d, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -142,7 +143,7 @@ PolygonCollider2D:
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.28866667}
+    pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 1, y: 1}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
@@ -151,9 +152,10 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0, y: 0.5773587}
-      - {x: -0.5, y: -0.28866667}
-      - {x: 0.5, y: -0.28866667}
+    - - {x: -0.4494257, y: 0.42643595}
+      - {x: -0.45402336, y: -0.42643666}
+      - {x: 0.42643738, y: -0.43103433}
+      - {x: 0.4218397, y: 0.42183924}
   m_UseDelaunayMesh: 0
 --- !u!50 &4806385028797139753
 Rigidbody2D:
@@ -182,6 +184,53 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &9063799927524854958
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1333070975439346493}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d998c002a8fd08445a1e3467397c6e91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flashColor: {r: 1, g: 1, b: 1, a: 1}
+  flashTime: 0.3
+  flashSpeedCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: -12.098471
+      outSlope: -12.098471
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.056475967
+      value: 0.3167272
+      inSlope: -7.425237
+      outSlope: -7.425237
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.030380499
+    - serializedVersion: 3
+      time: 0.3
+      value: 0
+      inSlope: -1.3005992
+      outSlope: -1.3005992
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &8204984635256081352
 GameObject:
   m_ObjectHideFlags: 0
@@ -284,6 +333,8 @@ MonoBehaviour:
   projectilePrefab: {fileID: 668132819298061139, guid: 4d63eabc99e720145ba875bdebfc34fe, type: 3}
   reloaded: 1
   reloadTime: 0.25
+  reloadAnimationClip: {fileID: 0}
+  reloadPrefab: {fileID: 0}
 --- !u!61 &3106155676312668371
 BoxCollider2D:
   m_ObjectHideFlags: 0
