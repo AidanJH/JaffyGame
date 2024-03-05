@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8148283008341792182}
   - component: {fileID: 5659145623902763140}
   - component: {fileID: 8146525110181856030}
+  - component: {fileID: 242647936154582684}
   - component: {fileID: 8550753822162902277}
   m_Layer: 8
   m_Name: ShotgunShootingEnemy
@@ -30,8 +31,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 8334102277197200344}
   m_Father: {fileID: 0}
@@ -56,7 +57,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 3d5ed676fb4d83d438a861a7b59f7ef7, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -77,8 +78,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 75f5f34dc1b5347e0b8351032682f224, type: 3}
-  m_Color: {r: 0.7140895, g: 0.23113209, b: 1, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 5bcad9be960427c4b98d90835e82ef99, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -123,7 +124,7 @@ PolygonCollider2D:
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.28866667}
+    pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 1, y: 1}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
@@ -132,9 +133,13 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0, y: 0.5773587}
-      - {x: -0.5, y: -0.28866667}
-      - {x: 0.5, y: -0.28866667}
+    - - {x: -0.20349014, y: 0.46677876}
+      - {x: -0.3677352, y: 0.16424513}
+      - {x: -0.5199326, y: -0.15343833}
+      - {x: -0.5132884, y: -0.443524}
+      - {x: 0.49667788, y: -0.45349026}
+      - {x: 0.5066443, y: -0.17585301}
+      - {x: 0.20681229, y: 0.47010088}
   m_UseDelaunayMesh: 0
 --- !u!50 &8146525110181856030
 Rigidbody2D:
@@ -163,6 +168,53 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &242647936154582684
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1967792642715327238}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d998c002a8fd08445a1e3467397c6e91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flashColor: {r: 2, g: 2, b: 2, a: 1}
+  flashTime: 0.3
+  flashSpeedCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: -12.098471
+      outSlope: -12.098471
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.056475967
+      value: 0.3167272
+      inSlope: -7.425237
+      outSlope: -7.425237
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.030380499
+    - serializedVersion: 3
+      time: 0.3
+      value: 0
+      inSlope: -1.3005992
+      outSlope: -1.3005992
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!114 &8550753822162902277
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -210,9 +262,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2338310723591804501}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0.67, z: 0}
-  m_LocalScale: {x: 0.2, y: 0.90000004, z: 0.4}
+  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0.47, z: 0}
+  m_LocalScale: {x: 0.14, y: 0.63, z: 0.28}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 3575815442528147037}
@@ -284,6 +336,8 @@ MonoBehaviour:
   projectilePrefab: {fileID: 668132819298061139, guid: 4d63eabc99e720145ba875bdebfc34fe, type: 3}
   reloaded: 1
   reloadTime: 2
+  reloadAnimationClip: {fileID: 0}
+  reloadPrefab: {fileID: 0}
   pelletsPerShot: 5
   spreadAngle: 30
   startOffset: 15

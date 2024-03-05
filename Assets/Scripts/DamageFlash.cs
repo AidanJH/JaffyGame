@@ -6,7 +6,7 @@ public class DamageFlash : MonoBehaviour
 {
 	[ColorUsage(true, true)]
 	[SerializeField] private Color flashColor = Color.white;
-	[SerializeField] private float flashTime = - 0.25f;
+	[SerializeField] private float flashTime = 0.3f;
 	[SerializeField] private AnimationCurve flashSpeedCurve;
 	
 	private SpriteRenderer[] spriteRenderers;
